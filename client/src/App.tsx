@@ -3,16 +3,16 @@ import { motion, useAnimation, type Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link as ScrollLink } from 'react-scroll';
-import { FaWhatsapp, FaStar, FaShieldAlt, FaLeaf, FaClock } from 'react-icons/fa';
+import { FaWhatsapp, FaStar, FaShieldAlt, FaLeaf, FaClock, FaPhoneAlt } from 'react-icons/fa';
 import { FiMenu, FiX } from 'react-icons/fi';
 
 // SEO Configuration
 const SEO = () => (
   <Helmet>
-    <title>Expert Sofa Dry Cleaning Services | SofaClean Pro</title>
+    <title>Expert Sofa Dry Cleaning Services | Prem Sofa Dry Cleaners</title>
     <meta
       name="description"
-      content="SofaClean Pro offers professional sofa dry cleaning, stain removal, and fabric protection. Revitalize your furniture today! Call or WhatsApp 9927754330 for a free, no-obligation quote."
+      content="Prem Sofa Dry Cleaners offers professional sofa dry cleaning, stain removal, and fabric protection. Revitalize your furniture today! Call or WhatsApp 9927754330 for a free, no-obligation quote."
     />
     <meta
       name="keywords"
@@ -87,8 +87,8 @@ const Navbar = () => {
     return (
         <div className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
             <div className="container mx-auto flex justify-between items-center h-20 px-4">
-                <h1 className={`text-3xl font-bold ${scrolled ? 'text-blue-600' : 'text-white'}`}>SofaClean Pro</h1>
-                <ul className={`hidden md:flex space-x-6 ${scrolled ? 'text-gray-700' : 'text-white'}`}>
+                <h1 className={`text-3xl font-bold ${scrolled && 'text-blue-600'}`}>Prem Sofa Dry Cleaners</h1>
+                <ul className={`hidden md:flex space-x-6 ${scrolled && 'text-gray-700'}`}>
                     {navLinks.map(link => (
                         <li key={link} className="font-semibold cursor-pointer hover:text-blue-600 transition-colors duration-300">
                            <ScrollLink to={link.toLowerCase()} spy={true} smooth={true} offset={-80} duration={500}>{link}</ScrollLink>
@@ -115,16 +115,43 @@ const Navbar = () => {
 
 // Floating WhatsApp Button
 const FloatingWhatsApp = () => (
-    <motion.a
-        href="https://wa.me/919927754330"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-full shadow-lg flex items-center justify-center z-50"
-        whileHover={{ scale: 1.1, rotate: 10 }}
-        transition={{ type: 'spring', stiffness: 300 }}
-    >
-        <FaWhatsapp size={30} />
-    </motion.a>
+    <AnimatedSection id="contact">
+    <div className="container mx-auto text-center bg-blue-600 text-white py-20 rounded-lg shadow-2xl">
+        <motion.h2 variants={itemVariants} className="text-4xl font-bold mb-4">
+            Ready for a Cleaner Sofa?
+        </motion.h2>
+        <motion.p variants={itemVariants} className="text-lg mb-8 max-w-2xl mx-auto">
+            Contact us now for a free, no-obligation quote. It's fast and easy!
+        </motion.p>
+        <div className="flex flex-col md:flex-row justify-center items-center gap-6 mt-8">
+            {/* Corrected Call Button */}
+            <motion.a
+                href="tel:9927754330"
+                variants={itemVariants}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-3 bg-white text-blue-600 font-bold py-4 px-8 rounded-full text-xl shadow-lg transition-transform"
+            >
+                <FaPhoneAlt />
+                <span>Call Now</span>
+            </motion.a>
+
+            {/* WhatsApp Button */}
+            <motion.a
+                href="https://wa.me/919927754330"
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={itemVariants}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-3 bg-green-500 text-white font-bold py-4 px-8 rounded-full text-xl shadow-lg transition-transform"
+            >
+                <FaWhatsapp />
+                <span>Message on WhatsApp</span>
+            </motion.a>
+        </div>
+    </div>
+</AnimatedSection>
 );
 
 const App = () => {
@@ -135,9 +162,9 @@ const App = () => {
         <Navbar />
 
         {/* Hero Section */}
-        <section id="home" className="min-h-screen flex items-center justify-center bg-cover bg-center bg-fixed" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1558211583-d26f610c1eb1?q=80&w=2070&auto=format&fit=crop)' }}>
-          <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-          <div className="relative text-center text-white p-10">
+        <section id="home" className="min-h-screen flex items-center justify-center bg-cover bg-center bg-fixed" style={{ backgroundImage: 'url(https://plus.unsplash.com/premium_photo-1683141389818-77fd3485334b?q=80&w=938&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)' }}>
+          <div className="absolute inset-0  bg-opacity-60"></div>
+          <div className="relative text-center  p-10">
             <motion.h1
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -173,7 +200,7 @@ const App = () => {
                     Who We Are
                 </motion.h2>
                 <motion.p variants={itemVariants} className="text-lg mb-4">
-                    SofaClean Pro is a team of dedicated professionals passionate about bringing new life to your furniture. We believe a clean home is a happy home, and a clean sofa is the centerpiece of that happiness.
+                    Prem Sofa Dry Cleaners is a team of dedicated professionals passionate about bringing new life to your furniture. We believe a clean home is a happy home, and a clean sofa is the centerpiece of that happiness.
                 </motion.p>
                 <motion.p variants={itemVariants} className="text-lg">
                     With years of experience, state-of-the-art equipment, and eco-friendly cleaning solutions, we guarantee a spotless and healthy living space for you and your family. Our commitment to quality and customer satisfaction is our top priority.
@@ -214,26 +241,69 @@ const App = () => {
 
         {/* Services Section */}
         <AnimatedSection id="services">
-            <div className="container mx-auto max-w-6xl text-center">
-                <motion.h2 variants={itemVariants} className="text-4xl font-bold mb-12">
-                    Our Cleaning Services
-                </motion.h2>
-                <div className="grid md:grid-cols-3 gap-8">
-                    <motion.div variants={itemVariants} className="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                        <h3 className="text-2xl font-bold mb-4">Deep Cleaning</h3>
-                        <p>Our signature service. An intensive cleaning process that removes all dirt, dust, and allergens from deep within your sofa's fabric, revitalizing its look and feel.</p>
-                    </motion.div>
-                    <motion.div variants={itemVariants} className="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                        <h3 className="text-2xl font-bold mb-4">Advanced Stain Removal</h3>
-                        <p>From wine and coffee to ink and pet stains, our specialized techniques effectively and safely remove even the toughest spots, restoring your sofa's original beauty.</p>
-                    </motion.div>
-                    <motion.div variants={itemVariants} className="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                        <h3 className="text-2xl font-bold mb-4">Fabric & Odor Protection</h3>
-                        <p>We apply an invisible protective shield that repels future stains and spills, while our deodorizing treatment neutralizes odors, keeping your sofa fresh.</p>
-                    </motion.div>
+    <div className="container mx-auto max-w-6xl text-center">
+        <motion.h2 variants={itemVariants} className="text-4xl font-bold mb-12">
+            Our Expert Cleaning Services
+        </motion.h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            {/* Service Card: Sofa Dry-Cleaning */}
+            <motion.div variants={itemVariants} className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1672345158827-7f4aa9467b49?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sofa Dry-Cleaning" className="w-full max-h-[50vh] object-cover"/>
+                <div className="p-6 text-left">
+                    <h3 className="text-2xl font-bold mb-2">Sofa Dry-Cleaning</h3>
+                    <p className="text-gray-600">Our signature service. We deep clean sofas to remove dirt, allergens, and tough stains, restoring freshness and revitalizing the fabric.</p>
                 </div>
-            </div>
-        </AnimatedSection>
+            </motion.div>
+
+            {/* Service Card: Dining Chair Cleaning */}
+            <motion.div variants={itemVariants} className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=465&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Dining Chair Cleaning" className="w-full object-cover max-h-[50vh] "/>
+                <div className="p-6 text-left">
+                    <h3 className="text-2xl font-bold mb-2">Dining Chair Cleaning</h3>
+                    <p className="text-gray-600">Spills and food stains are no match for us. We bring your dining chairs back to their original elegance, making them spotless for guests.</p>
+                </div>
+            </motion.div>
+
+            {/* Service Card: Office Chair Cleaning */}
+            <motion.div variants={itemVariants} className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl">
+                <img src="https://imgs.search.brave.com/Q017kpmbUbIhxMRzYDbrPUmTnipPdBNlaRZFp3Z9ylc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/dGhld2lyZWN1dHRl/ci5jb20vd3AtY29u/dGVudC9tZWRpYS8y/MDIwLzExL29mZmlj/ZWNoYWlycy0yMDQ4/cHgtNTk3Ni5qcGc" alt="Office Chair Cleaning" className="w-full min-h-[50vh] object-cover"/>
+                <div className="p-6 text-left">
+                    <h3 className="text-2xl font-bold mb-2">Office Chair Cleaning</h3>
+                    <p className="text-gray-600">Enhance your workspace hygiene. We professionally clean and sanitize office chairs, creating a healthier and more productive work environment.</p>
+                </div>
+            </motion.div>
+
+            {/* Service Card: Car Interior Cleaning */}
+            <motion.div variants={itemVariants} className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1630303433913-9c37dd9da8b0?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Car Interior Cleaning" className="w-full max-h-[50vh] object-cover"/>
+                <div className="p-6 text-left">
+                    <h3 className="text-2xl font-bold mb-2">Car Interior Cleaning</h3>
+                    <p className="text-gray-600">Revitalize your vehicle's interior. Our dry-cleaning service targets seats, carpets, and upholstery to eliminate stains, odors, and dust.</p>
+                </div>
+            </motion.div>
+
+            {/* Service Card: Carpet Dry-Cleaning */}
+            <motion.div variants={itemVariants} className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl">
+                <img src="https://plus.unsplash.com/premium_photo-1679775635467-630c72a1a7b6?q=80&w=726&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Carpet Dry-Cleaning" className="w-full min-h-[50vh] object-cover"/>
+                <div className="p-6 text-left">
+                    <h3 className="text-2xl font-bold mb-2">Carpet Dry-Cleaning</h3>
+                    <p className="text-gray-600">We lift deep-seated dirt and stubborn stains from your carpets, restoring their color and texture while eliminating hidden allergens.</p>
+                </div>
+            </motion.div>
+
+            {/* Service Card: Mattress Cleaning */}
+            <motion.div variants={itemVariants} className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl">
+                <img src="https://imgs.search.brave.com/er1mjcGOxncam0rej8vgypl1ODL5vFvZKRJZ8sMOMXU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jb250/ZW50Z3JpZC5ob21l/ZGVwb3Qtc3RhdGlj/LmNvbS9oZHVzL2Vu/X1VTL0RUQ0NPTU5F/Vy9BcnRpY2xlcy9o/b3ctdG8tY2xlYW4t/YS1tYXR0cmVzcy1z/dGVwLTEuanBn" alt="Mattress Cleaning" className="w-full min-h-[50vh] object-cover"/>
+                <div className="p-6 text-left">
+                    <h3 className="text-2xl font-bold mb-2">Mattress Cleaning</h3>
+                    <p className="text-gray-600">Sleep in a healthier environment. Our mattress cleaning service effectively removes dust mites, bacteria, and stains for a hygienic rest.</p>
+                </div>
+            </motion.div>
+
+        </div>
+    </div>
+</AnimatedSection>
 
         {/* How It Works Section */}
         <AnimatedSection id="process">
@@ -263,7 +333,7 @@ const App = () => {
                     What Our Clients Say
                 </motion.h2>
                 <motion.div variants={itemVariants} className="bg-blue-50 p-8 rounded-lg shadow-lg text-center max-w-2xl mx-auto">
-                    <p className="text-lg italic mb-4">"Absolutely amazed by the results! My 10-year-old sofa looks brand new. The team was professional, punctual, and the service was seamless. Highly recommend SofaClean Pro!"</p>
+                    <p className="text-lg italic mb-4">"Absolutely amazed by the results! My 10-year-old sofa looks brand new. The team was professional, punctual, and the service was seamless. Highly recommend Prem Sofa Dry Cleaners!"</p>
                     <p className="font-bold">- Sarah L.</p>
                 </motion.div>
             </div>
@@ -271,26 +341,14 @@ const App = () => {
 
 
         {/* CTA Section */}
-        <AnimatedSection id="contact">
-            <div className="container mx-auto text-center bg-blue-600 text-white py-20 rounded-lg">
-                <motion.h2 variants={itemVariants} className="text-4xl font-bold mb-4">
-                    Ready for a Cleaner Sofa?
-                </motion.h2>
-                <motion.p variants={itemVariants} className="text-lg mb-8">
-                    Contact us now for a free, no-obligation quote. It's fast and easy!
-                </motion.p>
-                <motion.div variants={itemVariants} className="bg-white text-blue-600 font-bold py-4 px-8 rounded-full inline-block text-2xl">
-                   Call or WhatsApp: 9927754330
-                </motion.div>
-            </div>
-        </AnimatedSection>
+       
         
         <FloatingWhatsApp />
 
         {/* Footer */}
         <footer className="bg-gray-800 text-white py-8">
             <div className="container mx-auto text-center">
-                <p>&copy; {new Date().getFullYear()} SofaClean Pro. All Rights Reserved.</p>
+                <p>&copy; {new Date().getFullYear()} Prem Sofa Dry Cleaners. All Rights Reserved.</p>
                 <div className="flex justify-center space-x-4 mt-4">
                     <a href="#" className="hover:text-blue-400">Facebook</a>
                     <a href="#" className="hover:text-blue-400">Instagram</a>

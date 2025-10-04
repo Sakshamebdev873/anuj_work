@@ -1,1 +1,9 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    font-family: "Montserrat";
+}
+.image{
+    background-image: url('https://images.pexels.com/photos/260046/pexels-photo-260046.jpeg');
+}
