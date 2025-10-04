@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, type Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link as ScrollLink } from 'react-scroll';
@@ -22,7 +22,7 @@ const SEO = () => (
 );
 
 // Animation Variants
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -30,7 +30,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants : Variants = {
   hidden: { y: 30, opacity: 0 },
   visible: {
     y: 0,
