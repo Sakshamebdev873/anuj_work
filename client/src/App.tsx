@@ -5,6 +5,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link as ScrollLink } from 'react-scroll';
 import { FaWhatsapp, FaStar, FaShieldAlt, FaLeaf, FaClock, FaPhoneAlt } from 'react-icons/fa';
 import { FiMenu, FiX } from 'react-icons/fi';
+import HeroSection from './HeroSection';
 
 // SEO Configuration
 const SEO = () => (
@@ -87,7 +88,7 @@ const Navbar = () => {
     return (
         <div className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
             <div className="container mx-auto flex justify-between items-center h-20 px-4">
-                <h1 className={`text-3xl font-bold ${scrolled && 'text-blue-600'}`}>Prem Sofa Dry Cleaners</h1>
+                <h1 className={`text-3xl font-bold ${scrolled && 'text-white'}`}>Prem Sofa Dry Cleaners</h1>
                 <ul className={`hidden md:flex space-x-6 ${scrolled && 'text-gray-700'}`}>
                     {navLinks.map(link => (
                         <li key={link} className="font-semibold cursor-pointer hover:text-blue-600 transition-colors duration-300">
@@ -96,7 +97,7 @@ const Navbar = () => {
                     ))}
                 </ul>
                 <div onClick={handleNav} className="block md:hidden z-10 cursor-pointer">
-                    {nav ? <FiX size={25} className={scrolled ? 'text-gray-800' : 'text-white'} /> : <FiMenu size={25} className={scrolled ? 'text-gray-800' : 'text-white'} />}
+                    {nav ? <FiX size={25} className={scrolled ? 'text-black' : 'text-white'} /> : <FiMenu size={25} className={scrolled ? 'text-gray-800' : 'text-white'} />}
                 </div>
                 <div className={`md:hidden absolute top-0 left-0 w-full h-screen bg-white text-gray-800 flex flex-col justify-center items-center transition-transform duration-300 ease-in-out ${nav ? 'translate-x-0' : '-translate-x-full'}`}>
                     <ul className="text-center">
@@ -162,36 +163,7 @@ const App = () => {
         <Navbar />
 
         {/* Hero Section */}
-        <section id="home" className="min-h-screen flex items-center justify-center bg-cover bg-center bg-fixed" style={{ backgroundImage: 'url(https://plus.unsplash.com/premium_photo-1683141389818-77fd3485334b?q=80&w=938&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)' }}>
-          <div className="absolute inset-0  bg-opacity-60"></div>
-          <div className="relative text-center  p-10">
-            <motion.h1
-              initial={{ y: -50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-5xl md:text-7xl font-extrabold mb-4"
-            >
-              Your Sofa's Second Life Starts Here
-            </motion.h1>
-            <motion.p
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="text-lg md:text-xl mb-8 max-w-2xl mx-auto"
-            >
-              We provide premium sofa dry cleaning that removes dirt, stains, and allergens, leaving your furniture impeccably clean and fresh.
-            </motion.p>
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1 }}
-            >
-                <ScrollLink to="contact" smooth={true} offset={-80} duration={500} className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-full transition duration-300 cursor-pointer">
-                    Get a Free Quote
-                </ScrollLink>
-            </motion.div>
-          </div>
-        </section>
+       <HeroSection></HeroSection>
 
         {/* About Us Section */}
         <AnimatedSection id="about">
