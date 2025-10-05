@@ -3,7 +3,7 @@ import { motion, useAnimation, type Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link as ScrollLink } from 'react-scroll';
-import { FaWhatsapp, FaStar, FaShieldAlt, FaLeaf, FaClock, FaPhoneAlt } from 'react-icons/fa';
+import { FaWhatsapp, FaStar, FaShieldAlt, FaLeaf, FaClock, FaPhoneAlt, FaInstagram } from 'react-icons/fa';
 import { FiMenu, FiX } from 'react-icons/fi';
 import HeroSection from './HeroSection';
 
@@ -69,6 +69,7 @@ const AnimatedSection = ({ children, id }: { children: React.ReactNode, id: stri
 };
 
 // Navbar Component
+
 const Navbar = () => {
     const [nav, setNav] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -77,9 +78,11 @@ const Navbar = () => {
 
     useEffect(() => {
         const handleScroll = () => {
+            // Check if user has scrolled more than 10px
             setScrolled(window.scrollY > 10);
         };
         window.addEventListener('scroll', handleScroll);
+        // Cleanup function to remove the event listener
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -88,22 +91,39 @@ const Navbar = () => {
     return (
         <div className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
             <div className="container mx-auto flex justify-between items-center h-20 px-4">
-                <h1 className={`text-3xl font-bold ${scrolled && 'text-white'}`}>Prem Sofa Dry Cleaners</h1>
-                <ul className={`hidden md:flex space-x-6 ${scrolled && 'text-gray-700'}`}>
+                {/* Logo with corrected text color logic */}
+                <h1 className={`text-3xl font-bold transition-colors duration-300 ${scrolled ? 'text-blue-600' : 'text-white'}`}>
+                    Prem Sofa Dry Cleaners
+                </h1>
+                
+                {/* Desktop Navigation Links with corrected text color logic */}
+                <ul className="hidden md:flex space-x-6">
                     {navLinks.map(link => (
-                        <li key={link} className="font-semibold cursor-pointer hover:text-blue-600 transition-colors duration-300">
-                           <ScrollLink to={link.toLowerCase()} spy={true} smooth={true} offset={-80} duration={500}>{link}</ScrollLink>
+                        <li key={link} className={`font-semibold cursor-pointer transition-colors duration-300 ${scrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-gray-300'}`}>
+                           <ScrollLink to={link.toLowerCase()} spy={true} smooth={true} offset={-80} duration={500}>
+                               {link}
+                           </ScrollLink>
                         </li>
                     ))}
                 </ul>
+
+                {/* Mobile Menu Icon with corrected logic */}
                 <div onClick={handleNav} className="block md:hidden z-10 cursor-pointer">
-                    {nav ? <FiX size={25} className={scrolled ? 'text-black' : 'text-white'} /> : <FiMenu size={25} className={scrolled ? 'text-gray-800' : 'text-white'} />}
+                    {nav ? (
+                        <FiX size={25} className="text-gray-800" /> // Close icon is always dark on white menu
+                    ) : (
+                        <FiMenu size={25} className={`transition-colors duration-300 ${scrolled ? 'text-gray-800' : 'text-white'}`} />
+                    )}
                 </div>
+
+                {/* Mobile Menu */}
                 <div className={`md:hidden absolute top-0 left-0 w-full h-screen bg-white text-gray-800 flex flex-col justify-center items-center transition-transform duration-300 ease-in-out ${nav ? 'translate-x-0' : '-translate-x-full'}`}>
                     <ul className="text-center">
                          {navLinks.map(link => (
                             <li key={link} className="py-6 text-4xl">
-                               <ScrollLink onClick={handleNav} to={link.toLowerCase()} spy={true} smooth={true} offset={-80} duration={500}>{link}</ScrollLink>
+                               <ScrollLink onClick={handleNav} to={link.toLowerCase()} spy={true} smooth={true} offset={-80} duration={500}>
+                                   {link}
+                               </ScrollLink>
                             </li>
                         ))}
                     </ul>
@@ -298,18 +318,45 @@ const App = () => {
             </div>
         </AnimatedSection>
         
-        {/* Testimonials Section */}
-        <AnimatedSection id="testimonials">
-            <div className="container mx-auto max-w-4xl">
-                <motion.h2 variants={itemVariants} className="text-4xl font-bold text-center mb-12">
-                    What Our Clients Say
-                </motion.h2>
-                <motion.div variants={itemVariants} className="bg-blue-50 p-8 rounded-lg shadow-lg text-center max-w-2xl mx-auto">
-                    <p className="text-lg italic mb-4">"Absolutely amazed by the results! My 10-year-old sofa looks brand new. The team was professional, punctual, and the service was seamless. Highly recommend Prem Sofa Dry Cleaners!"</p>
-                    <p className="font-bold">- Sarah L.</p>
+ {/*-- Corrected Testimonials Section --*/}
+<section id="testimonials" className="bg-blue-50"> {/* Added background color here */}
+    <AnimatedSection id='testimonials'>
+        <div className="container mx-auto max-w-6xl">
+            <motion.h2 variants={itemVariants} className="text-4xl font-bold text-center mb-12">
+                What Our Clients Say
+            </motion.h2>
+            
+            {/* Testimonials Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                {/* Testimonial 1 */}
+                <motion.div variants={itemVariants} className="bg-white p-8 rounded-lg shadow-lg flex flex-col justify-between">
+                    <div>
+                        <p className="text-lg italic text-gray-600 mb-6">"Incredible service! They completely removed a stubborn coffee stain from my favorite armchair that I thought was permanent. The team was professional, punctual, and very skilled. Highly recommend Prem Sofa Dry Cleaners!"</p>
+                    </div>
+                    <p className="font-bold text-blue-600 text-right">- Anuj Kumar</p>
                 </motion.div>
+
+                {/* Testimonial 2 */}
+                <motion.div variants={itemVariants} className="bg-white p-8 rounded-lg shadow-lg flex flex-col justify-between">
+                    <div>
+                        <p className="text-lg italic text-gray-600 mb-6">"My 10-year-old sofa looks and smells brand new. I was amazed by the results. The attention to detail was fantastic, and the entire process was seamless from booking to completion. Absolutely worth it."</p>
+                    </div>
+                    <p className="font-bold text-blue-600 text-right">- Deepak Kandpal</p>
+                </motion.div>
+
+                {/* Testimonial 3 */}
+                <motion.div variants={itemVariants} className="bg-white p-8 rounded-lg shadow-lg flex flex-col justify-between">
+                    <div>
+                        <p className="text-lg italic text-gray-600 mb-6">"I used their service for my car's interior, and the transformation was stunning. Every seat and carpet was impeccably clean. A truly professional job that exceeded my expectations. I will definitely be a repeat customer."</p>
+                    </div>
+                    <p className="font-bold text-blue-600 text-right">- Sheeladitya Vinay Kumar</p>
+                </motion.div>
+
             </div>
-        </AnimatedSection>
+        </div>
+    </AnimatedSection>
+</section>
 
 
         {/* CTA Section */}
@@ -318,15 +365,64 @@ const App = () => {
         <FloatingWhatsApp />
 
         {/* Footer */}
-        <footer className="bg-gray-800 text-white py-8">
-            <div className="container mx-auto text-center">
-                <p>&copy; {new Date().getFullYear()} Prem Sofa Dry Cleaners. All Rights Reserved.</p>
-                <div className="flex justify-center space-x-4 mt-4">
-                    <a href="#" className="hover:text-blue-400">Facebook</a>
-                    <a href="#" className="hover:text-blue-400">Instagram</a>
-                </div>
+     <footer className="bg-gray-800 text-white">
+    <div className="container mx-auto px-6 py-12">
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            {/* Column 1: Brand and Mission */}
+            <div>
+                <h3 className="text-xl font-bold mb-4">Prem Sofa Dry Cleaners</h3>
+                <p className="text-gray-400">
+                    Your trusted partner for a cleaner, healthier home environment. We specialize in revitalizing your furniture with professional care.
+                </p>
             </div>
-        </footer>
+
+            {/* Column 2: Contact and Social */}
+            <div>
+                <h3 className="text-xl font-bold mb-4">Get in Touch</h3>
+                <ul className="space-y-3">
+                    <li className="flex items-center">
+                        <FaPhoneAlt className="mr-3 text-blue-400" />
+                        <a href="tel:9927754330" className="text-gray-300 hover:text-white transition-colors duration-300">
+                            9927754330 , 
+                        </a>
+                        <a href="tel:7464840680" className="text-gray-300 hover:text-white transition-colors duration-300">
+                            7464840680
+                        </a>
+                    </li>
+                    <li className="flex items-center">
+                        <FaInstagram className="mr-3 text-blue-400" />
+                        <a 
+                            href="https://www.instagram.com/prem_sofa_drycleaners?igsh=MXdnZWMzZmszaDJ3NA==" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="text-gray-300 hover:text-white transition-colors duration-300"
+                        >
+                            prem_sofa_drycleaners
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            {/* Column 3: Service Areas */}
+            <div>
+                <h3 className="text-xl font-bold mb-4">Our Service Areas</h3>
+                <p className="text-gray-400 leading-relaxed">
+                    Bareilly, Haldwani, Rampur, Shahjahanpur, Budaun, Rudrapur, Kashipur, Ranibagh, Ranikhet, Lucknow, Kichha, and Gadarpur.
+                </p>
+            </div>
+
+        </div>
+
+        {/* Bottom Copyright Bar */}
+        <div className="mt-12 pt-8 border-t border-gray-700 text-center">
+            <p className="text-gray-500">
+                &copy; {new Date().getFullYear()} Prem Sofa Dry Cleaners. All Rights Reserved.
+            </p>
+        </div>
+    </div>
+</footer>
       </div>
     </HelmetProvider>
   );

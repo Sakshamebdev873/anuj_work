@@ -5,7 +5,7 @@ import { Link as ScrollLink } from "react-scroll";
 // --- Image data for the carousel ---
 const heroImages = [
   {
-    url: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?q=80&w=2070&auto-format&fit=crop",
+    url: "https://plus.unsplash.com/premium_photo-1683141389818-77fd3485334b?w=1080&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHNvZmF8ZW58MHx8MHx8fDA%3D",
     alt: "A clean and modern living room sofa",
   },
   {
@@ -19,7 +19,11 @@ const heroImages = [
   {
     url: "https://media.gettyimages.com/id/2151941242/photo/man-cleaning-car-leather-seat.jpg?s=612x612&w=0&k=20&c=EQN7LyMrApSYxVTsuO8Mn7DFcfd6J-xMYEyqztEEmDY=",
     alt: "The clean and pristine interior of a modern car",
-  },
+  }, 
+  {
+    url: "https://media.istockphoto.com/id/1130257823/photo/cleaning-mattress-by-vacuum-cleaner-dust-mites-on-bed-texture-concept-allergy-in-bed-room.jpg?s=612x612&w=0&k=20&c=CaHG_MtjhLEch0dnqk6hDu1ZMUjWiH_J1bZ5bAVra_Y=",
+    alt: "The clean and elegant cleaning of matress",
+  }
 ];
 
 const HeroSection = () => {
